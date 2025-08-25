@@ -24,6 +24,8 @@ use tracing_subscriber::Layer;
 mod idl;
 
 mod idl_helpers;
+mod perfetto_layer;
+mod perfetto_visitor;
 
 struct PerfettoSpanState {
     track_descriptor: Option<idl::TrackDescriptor>, // optional track descriptor for this span, defaults to thread if not found
