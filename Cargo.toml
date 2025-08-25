@@ -15,6 +15,9 @@ description = """
 Tracing layer for recording spans and events as perfetto event format.
 """
 
+[lib]
+doctest = false
+
 [dependencies]
 anyhow = "1.0.86"
 bytes = "1.6.0"

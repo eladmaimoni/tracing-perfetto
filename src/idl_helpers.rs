@@ -147,3 +147,59 @@ pub fn create_event(
     }
     event
 }
+
+impl tracing::field::Visit for DebugAnnotations {
+    fn record_bool(&mut self, field: &tracing::field::Field, value: bool) {
+        let annotation = idl::DebugAnnotation {
+            name_field: Some(idl::debug_annotation::NameField::Name(field.name().to_string())),
+            value: Some(idl::debug_annotation::Value::BoolValue(value)),
+            ..Default::default()
+        };
+        self.annotations.push(annotation);
+    }
+
+    fn record_str(&mut self, field: &tracing::field::Field, value: &str) {
+        let annotation = idl::DebugAnnotation {
+            name_field: Some(idl::debug_annotation::NameField::Name(field.name().to_string())),
+            value: Some(idl::debug_annotation::Value::StringValue(value.to_string())),
+            ..Default::default()
+        };
+        self.annotations.push(annotation);
+    }
+
+    fn record_f64(&mut self, field: &tracing::field::Field, value: f64) {
+        let annotation = idl::DebugAnnotation {
+            name_field: Some(idl::debug_annotation::NameField::Name(field.name().to_string())),
+            value: Some(idl::debug_annotation::Value::DoubleValue(value)),
+            ..Default::default()
+        };
+        self.annotations.push(annotation);
+    }
+
+    fn record_i64(&mut self, field: &tracing::field::Field, value: i64) {
+        let annotation = idl::DebugAnnotation {
+            name_field: Some(idl::debug_annotation::NameField::Name(field.name().to_string())),
+            value: Some(idl::debug_annotation::Value::IntValue(value)),
+            ..Default::default()
+        };
+        self.annotations.push(annotation);
+    }
+
+    fn record_u64(&mut self, field: &tracing::field::Field, value: u64) {
+        let annotation = idl::DebugAnnotation {
+            name_field: Some(idl::debug_annotation::NameField::Name(field.name().to_string())),
+            value: Some(idl::debug_annotation::Value::IntValue(value as i64)),
+            ..Default::default()
+        };
+        self.annotations.push(annotation);
+    }
+
+    fn record_debug(&mut self, field: &tracing::field::Field, value: &dyn std::fmt::Debug) {
+        let annotation = idl::DebugAnnotation {
+            name_field: Some(idl::debug_annotation::NameField::Name(field.name().to_string())),
+            value: Some(idl::debug_annotation::Value::StringValue(format!("{value:?}"))),
+            ..Default::default()
+        };
+        self.annotations.push(annotation);
+    }
+}
