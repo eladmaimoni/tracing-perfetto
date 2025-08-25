@@ -2281,6 +2281,7 @@ pub mod java_hprof_config {
 }
 /// Next id: 12
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[allow(dead_code)]
 pub struct PerfEvents {}
 /// Nested message and enum types in `PerfEvents`.
 pub mod perf_events {
@@ -21160,6 +21161,7 @@ pub struct StreamingProfilePacket {
 }
 /// Namespace for the contained enums.
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[allow(dead_code)]
 pub struct Profiling {}
 /// Nested message and enum types in `Profiling`.
 pub mod profiling {

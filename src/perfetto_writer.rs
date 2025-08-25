@@ -9,7 +9,7 @@ use crate::perfetto_layer::{Config, SequenceId, TrackUuid};
 /// Writes encoded records into provided instance.
 ///
 /// This is implemented for types implements [`MakeWriter`].
-pub(crate) trait PerfettoWriter {
+pub trait PerfettoWriter {
     fn write_log(&self, buf: bytes::BytesMut) -> std::io::Result<()>;
 }
 
